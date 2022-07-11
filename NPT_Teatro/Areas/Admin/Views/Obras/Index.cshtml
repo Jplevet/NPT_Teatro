@@ -1,0 +1,37 @@
+﻿@using NPT_Teatro.Utilidades
+@{
+    ViewData["Title"] = "Obras";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.IsInRole(CNT.Admin))
+{
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-light mt-5"> Lista de obras</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-info mt-5"><i class="fas fa-plus"></i> Crear Nueva Obra</a>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <table id="tblObras" class="table table-bordered" style="width:100%;">
+        <thead>
+            <tr>
+                <th class="text-light">Id</th>
+                <th class="text-light">Nombre</th>
+                <th class="text-light">Acciones</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+    @section Scripts{
+        <script src="~/js/obra.js"></script>
+    }
+
+}
+<p class="text-center" style="font-size: 50px;">Acceso no autorizado</p>
+

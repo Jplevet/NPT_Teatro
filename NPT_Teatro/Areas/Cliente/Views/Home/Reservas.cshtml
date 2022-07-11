@@ -1,0 +1,61 @@
+﻿@model NPT_Teatro.Models.ViewModels.FuncionVM
+@{
+    ViewData["Title"] = "Reservar lugar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h3 class="text-center">Editar función</h3>
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <!--El enctype nos deja subir imagenes-->
+    <input type="hidden" asp-for="Funcion.Id" />
+    <div class="row px-2 mx-2 border">
+        <div asp-validtaion-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-8 mt-4">
+           
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Funcion.ObraId">Obra</label>
+                </div>
+                
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Funcion.Cupo"></label>
+                    
+                </div>
+                <div class="col-8">
+                    <input name="cantReservas" placeholder="1" class="form-control" max="@Model.Funcion.Cupo" min="1" />
+                    <span asp-validation-for="Funcion.Cupo" class="text-danger"></span>
+                </div>
+            </div>
+
+          
+
+            <h4>@Model.Funcion.Cupo</h4>
+
+           
+
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    <div class="row">
+                        <div class="col">
+                            <button  asp-action="Reservar" class="btn btn-primary form-control" asp-route-id="Funcion.Id" >Reservar</button>
+                            &nbsp;
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success form-control">Volver a lista</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="col-4 pt-3">
+                <img src="@Model.Funcion.UrlImagen" style="border-radius: 5px; border: 1px solid #bbb9b9; width:50%" />
+            </div>
+
+    </div>
+</form>

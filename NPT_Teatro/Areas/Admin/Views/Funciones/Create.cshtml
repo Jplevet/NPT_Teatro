@@ -1,0 +1,71 @@
+﻿@using NPT_Teatro.Utilidades
+@model NPT_Teatro.Models.ViewModels.FuncionVM
+@{
+    ViewData["Title"] = "Crear funciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (User.IsInRole(CNT.Admin))
+            {
+    <br />
+<br />
+<h3 class="text-center text-light">Crear una nueva función</h3>
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <!--El enctype nos deja subir imagenes-->
+    <div class="row px-2 mx-2 border">
+        <div asp-validtaion-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-10 offset-1 mt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="text-light" asp-for="Funcion.Fecha"></label>
+                </div>
+                <div class="col-8">
+                    <input type="datetime-local" asp-for="Funcion.Fecha" class="form-control" />
+                    <span asp-validation-for="Funcion.Fecha" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="text-light" asp-for="Funcion.ObraId">Obra</label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Funcion.ObraId, Model.ListaObras,
+                   "-Seleccionar obra-", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="text-light" asp-for="Funcion.Cupo"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Funcion.Cupo" class="form-control" max="100" min="1" />
+                    <span asp-validation-for="Funcion.Cupo" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="text-light" asp-for="Funcion.UrlImagen"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="archivos" id="subidaArchivo" class="form-control" max="100" min="1" />
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    <partial name="_VistaCrearVolver" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</form>
+
+            }
+
+<p class="text-center" style="font-size: 50px;">Acceso no autorizado</p>
+

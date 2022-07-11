@@ -1,0 +1,32 @@
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using NPT_Teatro.AccesoDatos.Data.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+
+namespace NPT_Teatro.Areas.Admin.Controllers
+{
+    [Authorize]
+    [Area("Admin")]
+    public class UsuariosController : Controller
+    {
+        private readonly IContenedorTrabajo _contenedorTrabajo;
+
+        public UsuariosController(IContenedorTrabajo contenedorTrabajo)
+        {
+            _contenedorTrabajo = contenedorTrabajo;
+        }
+
+        public IActionResult Index()
+        {
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var usuarioActual = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            return View(_contenedorTrabajo.Usuario.GetAll(u => u.Id != usuarioActual.Value));
+        }
+       
+}
+}

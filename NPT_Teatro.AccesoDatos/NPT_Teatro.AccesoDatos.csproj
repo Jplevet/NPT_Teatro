@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20220127233812_CreacionTablaReservas.cs" />
+    <Compile Remove="Migrations\20220127233812_CreacionTablaReservas.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.17" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="3.1.17" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="3.1.21" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Inicializador\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NPT_Teatro.Models\NPT_Teatro.Models.csproj" />
+    <ProjectReference Include="..\NPT_Teatro.Utilidades\NPT_Teatro.Utilidades.csproj" />
+  </ItemGroup>
+
+</Project>

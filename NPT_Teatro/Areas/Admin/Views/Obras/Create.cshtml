@@ -1,0 +1,38 @@
+﻿@using NPT_Teatro.Utilidades
+@model NPT_Teatro.Models.Obra
+@{
+    ViewData["Title"] = "Crear obras";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (User.IsInRole(CNT.Admin))
+{
+    <br />
+<br />
+<h3 class="text-center text-light">Crear una nueva obra</h3>
+<form method="post" asp-action="Create">
+    <div class="row px-2 mx-2 border">
+        <div asp-validtaion-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-10 offset-1 mt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label class="text-light" asp-for="Nombre"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    <partial name="_VistaCrearVolver" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</form>
+    }
+    
+<p class="text-center" style="font-size: 50px;">Acceso no autorizado</p>

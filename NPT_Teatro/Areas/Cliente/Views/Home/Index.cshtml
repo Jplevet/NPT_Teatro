@@ -1,0 +1,59 @@
+﻿@model NPT_Teatro.Models.ViewModels.HomeVM
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+@* <div class="row fondoTitulo mt-5" style="border: solid 2px; border-radius: 20px;">
+        <div class="col-sm-12 py-5" >
+            <h1 class="text-center text-white">Próximas funciones</h1>
+        </div>
+    </div>*@
+
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" style="height: 500px;">
+
+        @{ int cont = 0;}
+        @foreach (var item in Model.ListaFunciones)
+        {
+            var itemDinamico = cont++ == 0 ? "item active" : "item";
+            <div class="carousel-item @itemDinamico">
+
+                <img class="w-100 fill" src="@Url.Content(item.UrlImagen)">
+            </div>
+        }
+
+    </div>
+</div>
+<div class="texto-carousel">
+    <div class="col-sm-12 py-5">
+        <h1 class="text-center text-white position-relative mt-5">Próximas funciones</h1>
+    </div>
+</div>
+
+
+
+
+@if (Model.ListaFunciones.Count() > 0)
+{
+
+    <div class="row">
+        @foreach (var funcion in Model.ListaFunciones.OrderBy(o => o.Id))
+        {
+            <div class="col-3 mb-5 mt-5">
+                <div class="card" style="background-color: black; border-radius: 10px;">
+                    <img src="@funcion.UrlImagen" class="img-thumbnail p-0" />
+                    <div class="card-body">
+                        <!--<h5 class="tex-center"></h5>-->
+                        <p class="text-light">@funcion.Fecha.ToString("MM/dd/yyyy HH:mm")</p>
+                        <a asp-action="Details" id="boton-info" class="btn btn-success" style="border-radius: 5px; background-color: #1e8535; " asp-route-id="@funcion.Id">Más información</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No hay funciones próximas</p>
+}
